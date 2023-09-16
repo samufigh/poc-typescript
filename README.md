@@ -15,7 +15,7 @@ Esta API permite gerenciar tarefas.
     "responsible": "Responsável pela Tarefa",
     "status": "Status da Tarefa"
   }
-- **Resposta de Sucesso (200 OK)**:
+- **Resposta de Sucesso (201 Created)**:
   ```json
   {
     "message": "Tarefa criada com sucesso"
