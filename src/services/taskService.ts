@@ -1,7 +1,6 @@
 import { idError, notFoundIdError, statusError } from "@/errors/typeErrors"
 import { Task } from "@/protocols/typeTask"
 import { taskRepository } from "@/repositories/taskRepository"
-import { number } from "joi"
 
 async function createTask(infoTask :Task) {
     const {name, description, day, responsible, status} = infoTask
@@ -19,8 +18,9 @@ async function getTasks() :Promise<Task[]> {
     return tasks
 }
 
-async function updateTask(infoTask :Task) {
-    const {id, name, description, day, responsible, status} = infoTask
+async function updateTask(infoTask :Task, id: string) {
+    const {name, description, day, responsible, status} = infoTask
+    const _id : number = Number(id)
 
     if (!id){
         throw idError()
@@ -28,25 +28,28 @@ async function updateTask(infoTask :Task) {
     if (status !== "fazer" && status !== "fazendo" && status !== "feito") {
         throw statusError()
     }
-    const task = await taskRepository.getTaskById(id)
+    const task = await taskRepository.getTaskById(_id)
 
     if (!task){
         throw notFoundIdError()
     }
 
 
-    return taskRepository.updateTask(id, name, description, day, responsible, status)
+    return taskRepository.updateTask(_id, name, description, day, responsible, status)
 }
 
-async function deleteTask(id :number) {
+async function deleteTask(id :string) {
 
-    const task = await taskRepository.getTaskById(id)
+    const _id : number = Number(id)
 
+    const task = await taskRepository.getTaskById(_id)
+
+    console.log(task)
     if (!task){
         throw notFoundIdError()
     }
 
-    return taskRepository.deleteTask(id)
+    return taskRepository.deleteTask(_id)
 }
 
 export const taskService = { createTask, getTasks, updateTask, deleteTask }

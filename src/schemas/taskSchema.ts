@@ -2,13 +2,6 @@ import Joi from "joi"
 import { Task } from "@/protocols/typeTask"
 
 export const taskSchema = Joi.object<Task>({
-  id: Joi.number()
-    .integer()
-    .messages({
-      'number.base': 'O ID deve ser um número',
-      'number.integer': 'O ID deve ser um número inteiro'
-    }),
-
   name: Joi.string()
     .max(255)
     .required()
@@ -49,15 +42,4 @@ export const taskSchema = Joi.object<Task>({
       'any.required': 'O status é obrigatório',
     }),
 });
-
-export const deleteTaskSchema = Joi.object<Task>({
-  id: Joi.number()
-    .integer()
-    .required()
-    .messages({
-      'number.base': 'O ID deve ser um número',
-      'number.integer': 'O ID deve ser um número inteiro',
-      'any.required': 'O ID é obrigatório',
-    })
-})
 

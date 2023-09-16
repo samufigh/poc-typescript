@@ -19,7 +19,7 @@ export function idError(){
 export function notFoundIdError(){
     return{
         type: "notFound",
-        message: `Insira o id de tarefa existente`,
+        message: `Insira o id de uma tarefa existente`,
         status: httpStatus.NOT_FOUND,
     }
 }
