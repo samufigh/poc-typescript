@@ -1,6 +1,6 @@
-# API do Organizador de Tarefas
+# API do Organizador de Tarefas da República
 
-Esta API permite gerenciar tarefas.
+Esta API permite gerenciar tarefas na república.
 
 ## Criar uma Nova Tarefa
 
