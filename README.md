@@ -1,6 +1,6 @@
 # API do Organizador de Tarefas da República
 
-Esta API permite gerenciar tarefas na república.
+Esta API permite gerenciar tarefas de uma república.
 
 ## Criar uma Nova Tarefa
 
@@ -52,11 +52,11 @@ Esta API permite gerenciar tarefas na república.
 - **Corpo da Solicitação (Body)**:
   ```json
   {
-  "name": "Novo Nome da Tarefa",
-  "description": "Nova Descrição da Tarefa",
-  "day": "DD-MM-AAAA",
-  "responsible": "Novo Responsável pela Tarefa",
-  "status": "Novo Status da Tarefa"
+    "name": "Novo Nome da Tarefa",
+    "description": "Nova Descrição da Tarefa",
+    "day": "DD-MM-AAAA",
+    "responsible": "Novo Responsável pela Tarefa",
+    "status": "Novo Status da Tarefa"
   }
 - **Resposta de Sucesso (200 OK)**:
   ```json
