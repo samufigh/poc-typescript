@@ -5,9 +5,8 @@ import { taskRepository } from "@/repositories/taskRepository"
 async function createTask(infoTask :Task) {
     const {name, description, day, responsible, status} = infoTask
 
-    if (status !== "fazer" && status !== "fazendo" && status !== "feito") {
-        throw statusError()
-    }
+    if (status !== "fazer" && status !== "fazendo" && status !== "feito") throw statusError()
+
 
     return taskRepository.createTask(name, description, day, responsible, status)
 }
@@ -19,21 +18,14 @@ async function getTasks() :Promise<Task[]> {
 }
 
 async function updateTask(infoTask :Task, id: string) {
+
     const {name, description, day, responsible, status} = infoTask
     const _id : number = Number(id)
-
-    if (!id){
-        throw idError()
-    }
-    if (status !== "fazer" && status !== "fazendo" && status !== "feito") {
-        throw statusError()
-    }
+    if(isNaN(_id)) throw notFoundIdError()
+    if (!id) throw idError()
+    if (status !== "fazer" && status !== "fazendo" && status !== "feito") throw statusError()
     const task = await taskRepository.getTaskById(_id)
-
-    if (!task){
-        throw notFoundIdError()
-    }
-
+    if (!task) throw notFoundIdError()
 
     return taskRepository.updateTask(_id, name, description, day, responsible, status)
 }
@@ -41,13 +33,9 @@ async function updateTask(infoTask :Task, id: string) {
 async function deleteTask(id :string) {
 
     const _id : number = Number(id)
-
+    if(isNaN(_id)) throw notFoundIdError()
     const task = await taskRepository.getTaskById(_id)
-
-    console.log(task)
-    if (!task){
-        throw notFoundIdError()
-    }
+    if (!task) throw notFoundIdError()
 
     return taskRepository.deleteTask(_id)
 }
